@@ -13,6 +13,7 @@ const MedicamentoTable: React.FC<MedicamentoTableProps> = ({ medicamentos, onEdi
     <table border={1} cellPadding={10} cellSpacing={0} style={{ width: '100%', textAlign: 'left' }}>
       <thead>
         <tr>
+          <th>ID</th>  
           <th>Nombre</th>
           <th>Descripcion</th>
           <th>Receta</th>
@@ -26,6 +27,7 @@ const MedicamentoTable: React.FC<MedicamentoTableProps> = ({ medicamentos, onEdi
         {medicamentos.map((medicamento) => (
           <tr key={medicamento.id}>
             {/* Muestra cada campo del medicamento en una celda de la tabla */}
+            <td>{medicamento.id}</td>
             <td>{medicamento.nombre}</td>
             <td>{medicamento.descripcion}</td>
             <td>{medicamento.receta}</td>

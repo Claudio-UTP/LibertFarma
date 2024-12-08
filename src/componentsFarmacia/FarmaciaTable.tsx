@@ -13,6 +13,7 @@ const FarmaciaTable: React.FC<FarmaciaTableProps> = ({ farmacias, onEdit, onDele
     <table border={1} cellPadding={10} cellSpacing={0} style={{ width: '100%', textAlign: 'left' }}>
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nombre</th>
           <th>Direccion</th>
           <th>Email</th>
@@ -25,6 +26,7 @@ const FarmaciaTable: React.FC<FarmaciaTableProps> = ({ farmacias, onEdit, onDele
         {farmacias.map((farmacia) => (
           <tr key={farmacia.id}>
             {/* Muestra cada campo de la farmacia en una celda de la tabla */}
+            <td>{farmacia.id}</td>
             <td>{farmacia.nombre}</td>
             <td>{farmacia.direccion}</td>
             <td>{farmacia.email}</td>

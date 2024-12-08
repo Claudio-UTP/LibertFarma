@@ -7,4 +7,3 @@ export interface Medicamento { // Define la interfaz Medicamento que refleja la 
     cantidad:number;   // Cantidad del medicamento
     precio:number;   // Precio del medicamento
   }
-  

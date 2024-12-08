@@ -6,12 +6,12 @@ import FarmaciaTable from './componentsFarmacia/FarmaciaTable';
 import './Appfarmacia.css'; 
  // Importa el componente de tabla
 
-const App: React.FC = () => {
+const Appfarmacia: React.FC = () => {
   // Estado para almacenar la lista de farmacia
-  const [farmacia, setFarmacia] = useState<Farmacia[]>([]);
+  const [farmacias, setFarmacia] = useState<Farmacia[]>([]);
   
   // Estado para almacenar el cliente que se está editando (si aplica)
-  const [farmaciaEdit, setFarmaciaEdit] = useState<Farmacia | null>(null);
+  const [FarmaciaEdit, setFarmaciaEdit] = useState<Farmacia | null>(null);
 
   // Hook que se ejecuta una vez al montar el componente para obtener la lista inicial de farmacias
   useEffect(() => {
@@ -40,9 +40,9 @@ const App: React.FC = () => {
 
   // Función para manejar la actualización de un farmacia existente
   const manejarActualizar = async (farmacia: Omit<Farmacia, 'id'>) => {
-    if (!farmaciaEdit) return; // Si no hay farmacia en edición, no hace nada
+    if (!FarmaciaEdit) return; // Si no hay farmacia en edición, no hace nada
     try {
-      await axios.put(`/api/farmacias/${farmaciaEdit.id}`,farmacia); // Hace una solicitud PUT para actualizar el farmacia
+      await axios.put(`/api/farmacias/${FarmaciaEdit.id}`,farmacia); // Hace una solicitud PUT para actualizar el farmacia
       obtenerFarmacias(); // Actualiza la lista de farmacias después de la actualización
       setFarmaciaEdit(null); // Resetea el estado de edición
     } catch (error) {
@@ -75,14 +75,14 @@ const App: React.FC = () => {
       <h1>Crud de Farmacias</h1>
       {/* Componente de Formulario para crear o editar farmacias */}
       <FarmaciaForm
-        onSubmit={farmaciaEdit ? manejarActualizar : manejarCrear} // Determina qué función ejecutar al enviar el formulario
-        initialData={farmaciaEdit || undefined} // Pasa los datos iniciales si se está editando
-        onCancel={farmaciaEdit ? cancelarEdicion : undefined} // Pasa la función para cancelar si se está editando
+        onSubmit={FarmaciaEdit ? manejarActualizar : manejarCrear} // Determina qué función ejecutar al enviar el formulario
+        initialData={FarmaciaEdit || undefined} // Pasa los datos iniciales si se está editando
+        onCancel={FarmaciaEdit ? cancelarEdicion : undefined} // Pasa la función para cancelar si se está editando
       />
 
       {/* Componente de Tabla para mostrar la lista de farmacias */}
       <FarmaciaTable
-        farmacias={farmacia} // Pasa la lista de farmacias al componente de tabla
+        farmacias={farmacias} // Pasa la lista de farmacias al componente de tabla
         onEdit={iniciarEdicion} // Pasa la función para editar un medicamento
         onDelete={manejarEliminar} // Pasa la función para eliminar un medicamento
       />
@@ -90,4 +90,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App; // Exporta el componente
+export default Appfarmacia; // Exporta el componente  para su uso en otros archivos

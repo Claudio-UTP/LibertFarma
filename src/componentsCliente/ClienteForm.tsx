@@ -31,6 +31,7 @@ const ClienteForm: React.FC<ClienteFormProps> = ({ onSubmit, initialData, onCanc
       setEmail('');
       setDireccion('');
       setTelefono('');
+ 
     }
   }, [initialData]);
 

@@ -13,6 +13,7 @@ const MedicoTable: React.FC<MedicoTableProps> = ({ medicos, onEdit, onDelete }) 
     <table border={1} cellPadding={10} cellSpacing={0} style={{ width: '100%', textAlign: 'left' }}>
       <thead>
         <tr>
+          <th>ID</th> 
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Email</th>
@@ -25,6 +26,7 @@ const MedicoTable: React.FC<MedicoTableProps> = ({ medicos, onEdit, onDelete }) 
         {medicos.map((medico) => (
           <tr key={medico.id}>
             {/* Muestra cada campo del médico en una celda de la tabla */}
+            <td>{medico.id}</td> 
             <td>{medico.nombre}</td>
             <td>{medico.apellido}</td>
             <td>{medico.email}</td>

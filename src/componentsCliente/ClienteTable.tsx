@@ -13,6 +13,7 @@ const ClienteTable: React.FC<ClienteTableProps> = ({ clientes, onEdit, onDelete 
     <table border={1} cellPadding={10} cellSpacing={0} style={{ width: '100%', textAlign: 'left' }}>
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Email</th>
@@ -25,6 +26,7 @@ const ClienteTable: React.FC<ClienteTableProps> = ({ clientes, onEdit, onDelete 
         {clientes.map((cliente) => (
           <tr key={cliente.id}>
             {/* Muestra cada campo del cliente en una celda de la tabla */}
+            <td>{cliente.id}</td>
             <td>{cliente.nombre}</td>
             <td>{cliente.apellido}</td>
             <td>{cliente.email}</td>

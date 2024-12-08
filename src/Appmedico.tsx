@@ -6,12 +6,12 @@ import MedicoTable from './componentsMedico/MedicoTable';
 import './Appmedico.css'; 
  // Importa el componente de tabla
 
- const App: React.FC = () => {
+ const Appmedico: React.FC = () => {
     // Estado para almacenar la lista de médicos
     const [medicos, setMedicos] = useState<Medico[]>([]);
     
     // Estado para almacenar el médico que se está editando (si aplica)
-    const [medicoEdit, setMedicoEdit] = useState<Medico | null>(null);
+    const [MedicoEdit, setMedicoEdit] = useState<Medico | null>(null);
   
     // Hook que se ejecuta una vez al montar el componente para obtener la lista inicial de médicos
     useEffect(() => {
@@ -40,9 +40,9 @@ import './Appmedico.css';
   
     // Función para manejar la actualización de un médico existente
     const manejarActualizar = async (medico: Omit<Medico, 'id'>) => {
-      if (!medicoEdit) return; // Si no hay médico en edición, no hace nada
+      if (!MedicoEdit) return; // Si no hay médico en edición, no hace nada
       try {
-        await axios.put(`/api/medicos/${medicoEdit.id}`, medico); // Hace una solicitud PUT para actualizar el médico
+        await axios.put(`/api/medicos/${MedicoEdit.id}`, medico); // Hace una solicitud PUT para actualizar el médico
         obtenerMedicos(); // Actualiza la lista de médicos después de la actualización
         setMedicoEdit(null); // Resetea el estado de edición
       } catch (error) {
@@ -76,9 +76,9 @@ import './Appmedico.css';
         
         {/* Componente de Formulario para crear o editar médicos */}
         <MedicoForm
-          onSubmit={medicoEdit ? manejarActualizar : manejarCrear} // Determina qué función ejecutar al enviar el formulario
-          initialData={medicoEdit || undefined} // Pasa los datos iniciales si se está editando
-          onCancel={medicoEdit ? cancelarEdicion : undefined} // Pasa la función para cancelar si se está editando
+          onSubmit={MedicoEdit ? manejarActualizar : manejarCrear} // Determina qué función ejecutar al enviar el formulario
+          initialData={MedicoEdit || undefined} // Pasa los datos iniciales si se está editando
+          onCancel={MedicoEdit ? cancelarEdicion : undefined} // Pasa la función para cancelar si se está editando
         />
   
         {/* Componente de Tabla para mostrar la lista de médicos */}
@@ -91,4 +91,4 @@ import './Appmedico.css';
     );
   };
   
-  export default App;
+  export default Appmedico;// Exporta el componente para su uso en otros archivos

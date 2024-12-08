@@ -6,12 +6,12 @@ import MedicamentoTable from './componentsMedicamento/MedicamentoTable';
 import './Appmedicamento.css'; 
  // Importa el componente de tabla
 
-const App: React.FC = () => {
+const Appmedicamento: React.FC = () => {
   // Estado para almacenar la lista de medicamento
-  const [medicamento, setMedicamento] = useState<Medicamento[]>([]);
+  const [medicamentos, setMedicamento] = useState<Medicamento[]>([]);
   
   // Estado para almacenar el medicamento que se está editando (si aplica)
-  const [medicamentoEdit, setMedicamentoEdit] = useState<Medicamento | null>(null);
+  const [MedicamentoEdit, setMedicamentoEdit] = useState<Medicamento | null>(null);
 
   // Hook que se ejecuta una vez al montar el componente para obtener la lista inicial de medicamentos
   useEffect(() => {
@@ -40,9 +40,9 @@ const App: React.FC = () => {
 
   // Función para manejar la actualización de un medicamento existente
   const manejarActualizar = async (medicamento: Omit<Medicamento, 'id'>) => {
-    if (!medicamentoEdit) return; // Si no hay medicamento en edición, no hace nada
+    if (!MedicamentoEdit) return; // Si no hay medicamento en edición, no hace nada
     try {
-      await axios.put(`/api/medicamentos/${medicamentoEdit.id}`,medicamento); // Hace una solicitud PUT para actualizar el medicamento
+      await axios.put(`/api/medicamentos/${MedicamentoEdit.id}`,medicamento); // Hace una solicitud PUT para actualizar el medicamento
       obtenerMedicamentos(); // Actualiza la lista de medicamentos después de la actualización
       setMedicamentoEdit(null); // Resetea el estado de edición
     } catch (error) {
@@ -76,14 +76,14 @@ const App: React.FC = () => {
       
       {/* Componente de Formulario para crear o editar medicamentos */}
       <MedicamentoForm
-        onSubmit={medicamentoEdit ? manejarActualizar : manejarCrear} // Determina qué función ejecutar al enviar el formulario
-        initialData={medicamentoEdit || undefined} // Pasa los datos iniciales si se está editando
-        onCancel={medicamentoEdit ? cancelarEdicion : undefined} // Pasa la función para cancelar si se está editando
+        onSubmit={MedicamentoEdit ? manejarActualizar : manejarCrear} // Determina qué función ejecutar al enviar el formulario
+        initialData={MedicamentoEdit || undefined} // Pasa los datos iniciales si se está editando
+        onCancel={MedicamentoEdit ? cancelarEdicion : undefined} // Pasa la función para cancelar si se está editando
       />
 
       {/* Componente de Tabla para mostrar la lista de medicamentos */}
       <MedicamentoTable
-        medicamentos={medicamento} // Pasa la lista de medicamentos al componente de tabla
+        medicamentos={medicamentos} // Pasa la lista de medicamentos al componente de tabla
         onEdit={iniciarEdicion} // Pasa la función para editar un medicamento
         onDelete={manejarEliminar} // Pasa la función para eliminar un medicamento
       />
@@ -91,4 +91,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App; // Exporta el componente para s
+export default Appmedicamento; // Exporta el componente para su uso en otros archivos
