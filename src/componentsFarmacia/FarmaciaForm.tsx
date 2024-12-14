@@ -100,7 +100,7 @@ const FarmaciaForm: React.FC<FarmaciaFormProps> = ({ onSubmit, initialData, onCa
         type="horario"
         placeholder="Horario"
         value={horario}
-        onChange={(e) => setDireccion(e.target.value)} // Actualiza el estado 'horario' al cambiar el valor
+        onChange={(e) => setHorario(e.target.value)} // Actualiza el estado 'horario' al cambiar el valor
         required // Campo obligatorio
         style={{ marginRight: '10px' }}
       />  
